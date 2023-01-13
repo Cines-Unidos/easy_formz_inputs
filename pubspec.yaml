@@ -1,19 +1,20 @@
 name: formz_representation
-description: Formz Representation
+description: Common FormzInputs representations using Formz Package
+repository: https://https://github.com/Avila-Tek/formz_representation
+issue_tracker: https://https://github.com/Avila-Tek/formz_representation/issues
+homepage: https://https://github.com/Avila-Tek/formz_representation
+documentation: https://https://github.com/Avila-Tek/formz_representation
+
 version: 0.1.0+1
 publish_to: none
 
 environment:
   sdk: ">=2.18.0 <3.0.0"
-  flutter: 3.3.7
 
 dependencies:
-  flutter:
-    sdk: flutter
   formz: ^0.4.1
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
   mocktail: ^0.3.0
+  test: ^1.16.0
   very_good_analysis: ^3.1.0
