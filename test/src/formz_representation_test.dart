@@ -49,5 +49,12 @@ void main() {
         isNull,
       );
     });
+
+    test('displayError is null if super.dirty.toPure is used', () {
+      expect(
+        EmailInput.dirty(value: 'lesp').toPure.displayError,
+        isNull,
+      );
+    });
   });
 }

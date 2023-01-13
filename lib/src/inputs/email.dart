@@ -21,7 +21,7 @@ class EmailInput extends FormzInput<String, EmailValidationError> {
   /// and has been modified
   EmailValidationError? get displayError => pure ? null : error;
 
-  /// Convert to pure
+  /// Convert [EmailInput] to pure
   EmailInput get toPure => EmailInput.pure(value: value);
 
   @override
