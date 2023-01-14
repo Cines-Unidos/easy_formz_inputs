@@ -121,5 +121,112 @@ void main() {
         PasswordValidationError.notContainsSpecialCharacters,
       );
     });
+
+    test('password errorList contains all password validation errors', () {
+      expect(
+        PasswordInput.dirty().errorList,
+        containsAll(
+          [
+            PasswordValidationError.empty,
+            PasswordValidationError.notContainsDigits,
+            PasswordValidationError.invalidCharactersNumber,
+            PasswordValidationError.notContainsLowercase,
+            PasswordValidationError.notContainsUppercase,
+            PasswordValidationError.notContainsSpecialCharacters,
+          ],
+        ),
+      );
+    });
+    test('password errorList with a lowercase letter value', () {
+      expect(
+        PasswordInput.dirty(value: 'a').errorList,
+        containsAll(
+          [
+            PasswordValidationError.notContainsDigits,
+            PasswordValidationError.invalidCharactersNumber,
+            PasswordValidationError.notContainsUppercase,
+            PasswordValidationError.notContainsSpecialCharacters,
+          ],
+        ),
+      );
+    });
+
+    test('password errorList with a lowercase letter value', () {
+      expect(
+        PasswordInput.dirty(value: 'A').errorList,
+        containsAll(
+          [
+            PasswordValidationError.notContainsDigits,
+            PasswordValidationError.invalidCharactersNumber,
+            PasswordValidationError.notContainsLowercase,
+            PasswordValidationError.notContainsSpecialCharacters,
+          ],
+        ),
+      );
+    });
+
+    test('password errorList with lowercase and uppercase letters', () {
+      expect(
+        PasswordInput.dirty(value: 'Aa').errorList,
+        containsAll(
+          [
+            PasswordValidationError.notContainsDigits,
+            PasswordValidationError.invalidCharactersNumber,
+            PasswordValidationError.notContainsSpecialCharacters,
+          ],
+        ),
+      );
+    });
+
+    test('password errorList with lowercase and uppercase letters', () {
+      expect(
+        PasswordInput.dirty(value: 'Aa').errorList,
+        containsAll(
+          [
+            PasswordValidationError.notContainsDigits,
+            PasswordValidationError.invalidCharactersNumber,
+            PasswordValidationError.notContainsSpecialCharacters,
+          ],
+        ),
+      );
+    });
+
+    test('password errorList with lowercase, uppercase and digit', () {
+      expect(
+        PasswordInput.dirty(value: 'Aa1').errorList,
+        containsAll(
+          [
+            PasswordValidationError.invalidCharactersNumber,
+            PasswordValidationError.notContainsSpecialCharacters,
+          ],
+        ),
+      );
+    });
+
+    test('password errorList with lowercase, uppercase, digit, special char',
+        () {
+      expect(
+        PasswordInput.dirty(value: 'Aa1.').errorList,
+        containsAll(
+          [
+            PasswordValidationError.invalidCharactersNumber,
+          ],
+        ),
+      );
+    });
+
+    test('password errorList is empty', () {
+      expect(
+        PasswordInput.dirty(value: 'Aa1.Aa1.Aa1.').errorList,
+        isEmpty,
+      );
+    });
+
+    test('password errorList is not empty', () {
+      expect(
+        PasswordInput.pure().errorList,
+        isNotEmpty,
+      );
+    });
   });
 }
