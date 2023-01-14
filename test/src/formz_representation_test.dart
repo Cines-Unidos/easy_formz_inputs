@@ -122,6 +122,13 @@ void main() {
       );
     });
 
+    test('displayError is null if super.dirty.toPure is used', () {
+      expect(
+        PasswordInput.dirty().toPure.displayError,
+        isNull,
+      );
+    });
+
     test('password errorList contains all password validation errors', () {
       expect(
         PasswordInput.dirty().errorList,
