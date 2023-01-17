@@ -15,7 +15,7 @@ class ConfirmPasswordInput
     extends FormzInput<String, ConfirmPasswordValidationError> {
   const ConfirmPasswordInput.pure({
     String value = '',
-    required this.password,
+    this.password = '',
   }) : super.pure(value);
 
   /// Dirty representation of [ConfirmPasswordInput]
