@@ -236,4 +236,65 @@ void main() {
       );
     });
   });
+
+  group('ConfirmPasswordInput', () {
+    test('can be instantiated', () {
+      expect(ConfirmPasswordInput.pure(), isNotNull);
+    });
+
+    test('pure is true when super.pure is used', () {
+      expect(ConfirmPasswordInput.pure().pure, isTrue);
+    });
+
+    test('pure is false when super.dirty is used', () {
+      expect(ConfirmPasswordInput.dirty(password: '').pure, isFalse);
+    });
+
+    test('displayError is null when super.pure is used', () {
+      expect(ConfirmPasswordInput.pure().displayError, isNull);
+    });
+
+    test('displayError is null when super.pure is used with an initial value',
+        () {
+      expect(ConfirmPasswordInput.pure(value: 'pass').displayError, isNull);
+    });
+
+    test('displayError is not null when super.dirty is used', () {
+      expect(ConfirmPasswordInput.dirty(password: '').displayError, isNotNull);
+    });
+
+    test(
+        'displayError is [EmailValidationError.empty] when super.dirty is used',
+        () {
+      expect(
+        ConfirmPasswordInput.dirty(password: '').displayError,
+        ConfirmPasswordValidationError.empty,
+      );
+    });
+
+    test('displayError is [EmailValidationError.invalid]', () {
+      expect(
+        ConfirmPasswordInput.dirty(value: 'luis', password: 'siul')
+            .displayError,
+        ConfirmPasswordValidationError.noCoincidence,
+      );
+    });
+
+    test('displayError is null if super.dirty value is valid', () {
+      expect(
+        ConfirmPasswordInput.dirty(value: 'password', password: 'password')
+            .displayError,
+        isNull,
+      );
+    });
+
+    test('displayError is null if super.dirty.toPure is used', () {
+      expect(
+        ConfirmPasswordInput.dirty(value: 'password', password: '')
+            .toPure
+            .displayError,
+        isNull,
+      );
+    });
+  });
 }
