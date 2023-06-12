@@ -342,6 +342,13 @@ void main() {
       );
     });
 
+    test('NonEmptyValidationError is notNull when pure().toDirty', () {
+      expect(
+        NonEmptyInput.pure(value: 'luis').toDirty.displayError,
+        isNull,
+      );
+    });
+
     test('NonEmptyValidationError is null when .toPure', () {
       expect(
         NonEmptyInput.dirty().toPure.displayError,
