@@ -297,4 +297,129 @@ void main() {
       );
     });
   });
+
+  group('NonEmptyInput', () {
+    test('can be instantiated', () {
+      expect(NonEmptyInput.pure(), isNotNull);
+    });
+
+    test('pure is true when super.pure is used', () {
+      expect(NonEmptyInput.pure().isPure, isTrue);
+    });
+
+    test('pure is false when super.dirty is used', () {
+      expect(NonEmptyInput.dirty().isPure, isFalse);
+    });
+
+    test('displayError is null when super.pure is used', () {
+      expect(NonEmptyInput.pure().displayError, isNull);
+    });
+
+    test('displayError is null when super.pure is used with an initial value',
+        () {
+      expect(NonEmptyInput.pure(value: 'luis').displayError, isNull);
+    });
+
+    test('displayError is not null when super.dirty is used', () {
+      expect(NonEmptyInput.dirty().displayError, isNotNull);
+    });
+
+    test('NonEmptyValidationError is not empty', () {
+      expect(NonEmptyInput.dirty().displayError, NonEmptyValidationError.empty);
+    });
+
+    test('NonEmptyValidationError is empty', () {
+      expect(
+        NonEmptyInput.dirty().displayError,
+        NonEmptyValidationError.empty,
+      );
+    });
+
+    test('NonEmptyValidationError is null', () {
+      expect(
+        NonEmptyInput.dirty(value: 'hola').displayError,
+        isNull,
+      );
+    });
+
+    test('NonEmptyValidationError is notNull when pure().toDirty', () {
+      expect(
+        NonEmptyInput.pure(value: 'luis').toDirty.displayError,
+        isNull,
+      );
+    });
+
+    test('NonEmptyValidationError is null when .toPure', () {
+      expect(
+        NonEmptyInput.dirty().toPure.displayError,
+        isNull,
+      );
+    });
+  });
+
+  group('UrlInput', () {
+    test('can be instantiated', () {
+      expect(UrlInput.pure(), isNotNull);
+    });
+
+    test('pure is true when super.pure is used', () {
+      expect(UrlInput.pure().isPure, isTrue);
+    });
+
+    test('pure is false when super.dirty is used', () {
+      expect(UrlInput.dirty().isPure, isFalse);
+    });
+
+    test('displayError is null when super.pure is used', () {
+      expect(UrlInput.pure().displayError, isNull);
+    });
+
+    test('displayError is null when super.pure is used with an initial value',
+        () {
+      expect(UrlInput.pure(value: 'luis').displayError, isNull);
+    });
+
+    test('displayError is not null when super.dirty is used', () {
+      expect(UrlInput.dirty().displayError, isNotNull);
+    });
+
+    test('UrlValidationError is not empty', () {
+      expect(UrlInput.dirty().displayError, UrlValidationError.empty);
+    });
+
+    test('UrlValidationError is empty', () {
+      expect(
+        UrlInput.dirty().displayError,
+        UrlValidationError.empty,
+      );
+    });
+
+    test('UrlValidationError is not valid', () {
+      expect(
+        UrlInput.dirty(value: 'luis').displayError,
+        UrlValidationError.invalid,
+      );
+    });
+
+    test('UrlValidationError is null when .toPure', () {
+      expect(
+        UrlInput.dirty(value: 'luis').toPure.displayError,
+        isNull,
+      );
+    });
+
+    test('UrlValidationError is empty', () {
+      expect(
+        UrlInput.dirty().displayError,
+        UrlValidationError.empty,
+      );
+    });
+
+    test('NonEmptyValidationError is null', () {
+      expect(
+        NonEmptyInput.dirty(value: 'http://test.com').displayError,
+        isNull,
+      );
+    });
+  });
 }
