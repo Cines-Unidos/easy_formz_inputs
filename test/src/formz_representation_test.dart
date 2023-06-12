@@ -10,11 +10,11 @@ void main() {
     });
 
     test('pure is true when super.pure is used', () {
-      expect(EmailInput.pure().pure, isTrue);
+      expect(EmailInput.pure().isPure, isTrue);
     });
 
     test('pure is false when super.dirty is used', () {
-      expect(EmailInput.dirty().pure, isFalse);
+      expect(EmailInput.dirty().isPure, isFalse);
     });
 
     test('displayError is null when super.pure is used', () {
@@ -64,11 +64,11 @@ void main() {
     });
 
     test('pure is true when super.pure is used', () {
-      expect(PasswordInput.pure().pure, isTrue);
+      expect(PasswordInput.pure().isPure, isTrue);
     });
 
     test('pure is false when super.dirty is used', () {
-      expect(PasswordInput.dirty().pure, isFalse);
+      expect(PasswordInput.dirty().isPure, isFalse);
     });
 
     test('displayError is null when super.pure is used', () {
@@ -243,11 +243,11 @@ void main() {
     });
 
     test('pure is true when super.pure is used', () {
-      expect(ConfirmPasswordInput.pure().pure, isTrue);
+      expect(ConfirmPasswordInput.pure().isPure, isTrue);
     });
 
     test('pure is false when super.dirty is used', () {
-      expect(ConfirmPasswordInput.dirty(password: '').pure, isFalse);
+      expect(ConfirmPasswordInput.dirty(password: '').isPure, isFalse);
     });
 
     test('displayError is null when super.pure is used', () {

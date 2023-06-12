@@ -24,6 +24,7 @@ enum PasswordValidationError {
 /// Password representation class which extends [FormzInput] and provides
 /// validation logic.
 class PasswordInput extends FormzInput<String, PasswordValidationError> {
+  /// Pure representation of [PasswordInput]
   const PasswordInput.pure({String value = ''}) : super.pure(value);
 
   /// Dirty representation of [PasswordInput]
@@ -31,7 +32,8 @@ class PasswordInput extends FormzInput<String, PasswordValidationError> {
 
   /// Display error if the [PasswordInput] is not valid
   /// and has been modified
-  PasswordValidationError? get displayError => pure ? null : error;
+  @override
+  PasswordValidationError? get displayError => isPure ? null : error;
 
   /// Convert [PasswordInput] to pure
   PasswordInput get toPure => PasswordInput.pure(value: value);

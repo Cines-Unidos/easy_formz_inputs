@@ -13,6 +13,7 @@ enum ConfirmPasswordValidationError {
 /// validation logic.
 class ConfirmPasswordInput
     extends FormzInput<String, ConfirmPasswordValidationError> {
+  /// Pure representation of [ConfirmPasswordInput]
   const ConfirmPasswordInput.pure({
     String value = '',
     this.password = '',
@@ -29,7 +30,8 @@ class ConfirmPasswordInput
 
   /// Display error if the [ConfirmPasswordInput] is not valid
   /// and has been modified
-  ConfirmPasswordValidationError? get displayError => pure ? null : error;
+  @override
+  ConfirmPasswordValidationError? get displayError => isPure ? null : error;
 
   /// Convert [ConfirmPasswordInput] to pure
   ConfirmPasswordInput get toPure =>

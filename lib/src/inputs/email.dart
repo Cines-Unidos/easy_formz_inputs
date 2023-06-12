@@ -12,6 +12,7 @@ enum EmailValidationError {
 /// Email representation class which extends [FormzInput] and provides
 /// validation logic.
 class EmailInput extends FormzInput<String, EmailValidationError> {
+  /// Pure representation of [EmailInput]
   const EmailInput.pure({String value = ''}) : super.pure(value);
 
   /// [EmailInput] has been modified with [value]
@@ -19,7 +20,8 @@ class EmailInput extends FormzInput<String, EmailValidationError> {
 
   /// Display error if the [EmailInput] is not valid
   /// and has been modified
-  EmailValidationError? get displayError => pure ? null : error;
+  @override
+  EmailValidationError? get displayError => isPure ? null : error;
 
   /// Convert [EmailInput] to pure
   EmailInput get toPure => EmailInput.pure(value: value);
