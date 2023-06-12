@@ -341,6 +341,13 @@ void main() {
         isNull,
       );
     });
+
+    test('NonEmptyValidationError is null when .toPure', () {
+      expect(
+        NonEmptyInput.dirty().toPure.displayError,
+        isNull,
+      );
+    });
   });
 
   group('UrlInput', () {
@@ -384,6 +391,13 @@ void main() {
       expect(
         UrlInput.dirty(value: 'luis').displayError,
         UrlValidationError.invalid,
+      );
+    });
+
+    test('UrlValidationError is null when .toPure', () {
+      expect(
+        UrlInput.dirty(value: 'luis').toPure.displayError,
+        isNull,
       );
     });
 
