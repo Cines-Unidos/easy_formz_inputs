@@ -298,7 +298,7 @@ void main() {
     });
   });
 
-  group('NonEmpty', () {
+  group('NonEmptyInput', () {
     test('can be instantiated', () {
       expect(NonEmptyInput.pure(), isNotNull);
     });
@@ -338,6 +338,65 @@ void main() {
     test('NonEmptyValidationError is null', () {
       expect(
         NonEmptyInput.dirty(value: 'hola').displayError,
+        isNull,
+      );
+    });
+  });
+
+  group('UrlInput', () {
+    test('can be instantiated', () {
+      expect(UrlInput.pure(), isNotNull);
+    });
+
+    test('pure is true when super.pure is used', () {
+      expect(UrlInput.pure().isPure, isTrue);
+    });
+
+    test('pure is false when super.dirty is used', () {
+      expect(UrlInput.dirty().isPure, isFalse);
+    });
+
+    test('displayError is null when super.pure is used', () {
+      expect(UrlInput.pure().displayError, isNull);
+    });
+
+    test('displayError is null when super.pure is used with an initial value',
+        () {
+      expect(UrlInput.pure(value: 'luis').displayError, isNull);
+    });
+
+    test('displayError is not null when super.dirty is used', () {
+      expect(UrlInput.dirty().displayError, isNotNull);
+    });
+
+    test('UrlValidationError is not empty', () {
+      expect(UrlInput.dirty().displayError, UrlValidationError.empty);
+    });
+
+    test('UrlValidationError is empty', () {
+      expect(
+        UrlInput.dirty().displayError,
+        UrlValidationError.empty,
+      );
+    });
+
+    test('UrlValidationError is not valid', () {
+      expect(
+        UrlInput.dirty(value: 'luis').displayError,
+        UrlValidationError.invalid,
+      );
+    });
+
+    test('UrlValidationError is empty', () {
+      expect(
+        UrlInput.dirty().displayError,
+        UrlValidationError.empty,
+      );
+    });
+
+    test('NonEmptyValidationError is null', () {
+      expect(
+        NonEmptyInput.dirty(value: 'http://test.com').displayError,
         isNull,
       );
     });
