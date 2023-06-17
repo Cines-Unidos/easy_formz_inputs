@@ -415,10 +415,131 @@ void main() {
       );
     });
 
-    test('NonEmptyValidationError is null', () {
+    test('UrlValidationError is null', () {
       expect(
-        NonEmptyInput.dirty(value: 'http://test.com').displayError,
+        UrlInput.dirty(value: 'http://test.com').displayError,
         isNull,
+      );
+    });
+  });
+
+  group('PhoneInput', () {
+    final countryExample = CountryModel(
+      name: 'Venezuela, Bolivarian Republic of Venezuela',
+      flag: '🇻🇪',
+      code: 'VE',
+      dialCode: '58',
+      minLength: 10,
+      maxLength: 10,
+    );
+    test('can be instantiated', () {
+      expect(PhoneInput.pure(), isNotNull);
+    });
+
+    test('pure is true when super.pure is used', () {
+      expect(PhoneInput.pure().isPure, isTrue);
+    });
+
+    test('pure is false when super.dirty is used', () {
+      expect(PhoneInput.dirty().isPure, isFalse);
+    });
+
+    test('displayError is null when super.pure is used', () {
+      expect(PhoneInput.pure().displayError, isNull);
+    });
+
+    test('displayError is null when super.pure is used with an initial value',
+        () {
+      expect(PhoneInput.pure(value: '123123').displayError, isNull);
+    });
+
+    test('displayError is not null when super.dirty is used', () {
+      expect(PhoneInput.dirty().displayError, isNotNull);
+    });
+
+    test('PhoneValidationError is not empty', () {
+      expect(PhoneInput.dirty().displayError, PhoneValidationError.empty);
+    });
+
+    test('PhoneValidationError is empty', () {
+      expect(
+        PhoneInput.dirty().displayError,
+        PhoneValidationError.empty,
+      );
+    });
+
+    test('PhoneValidationError is noCountrySelected', () {
+      expect(
+        PhoneInput.dirty(value: '4149137341').displayError,
+        PhoneValidationError.noCountrySelected,
+      );
+    });
+
+    test('PhoneValidationError is invalidLength (less then min len)', () {
+      expect(
+        PhoneInput.dirty(
+          value: '414913',
+          country: countryExample,
+        ).displayError,
+        PhoneValidationError.invalidLength,
+      );
+    });
+
+    test('PhoneValidationError is invalidLength (more then max len)', () {
+      expect(
+        PhoneInput.dirty(
+          value: '41491313121231',
+          country: countryExample,
+        ).displayError,
+        PhoneValidationError.invalidLength,
+      );
+    });
+
+    test('PhoneValidationError is null when .toPure', () {
+      expect(
+        PhoneInput.dirty(value: '414123').toPure.displayError,
+        isNull,
+      );
+    });
+
+    test('PhoneValidationError is null', () {
+      expect(
+        PhoneInput.dirty(
+          value: '4149137341',
+          country: countryExample,
+        ).displayError,
+        isNull,
+      );
+    });
+
+    test('PhoneInput.fullPhone match', () {
+      expect(
+        PhoneInput.dirty(
+          value: '4149137341',
+          country: countryExample,
+        ).fullPhone,
+        '+${countryExample.dialCode}4149137341',
+      );
+    });
+
+    test('CountryModel props', () {
+      expect(
+        countryExample.props,
+        [
+          countryExample.name,
+          countryExample.flag,
+          countryExample.code,
+          countryExample.dialCode,
+          countryExample.minLength,
+          countryExample.maxLength
+        ],
+      );
+    });
+
+    test('CountryModel stringify', () {
+      expect(
+        countryExample.stringify,
+        true,
       );
     });
   });
