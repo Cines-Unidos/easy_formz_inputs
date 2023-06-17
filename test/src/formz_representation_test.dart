@@ -543,4 +543,73 @@ void main() {
       );
     });
   });
+
+  group('DateInput', () {
+    test('can be instantiated', () {
+      expect(DateInput.pure(), isNotNull);
+    });
+
+    test('pure is true when super.pure is used', () {
+      expect(DateInput.pure().isPure, isTrue);
+    });
+
+    test('pure is false when super.dirty is used', () {
+      expect(DateInput.dirty().isPure, isFalse);
+    });
+
+    test('displayError is null when super.pure is used', () {
+      expect(DateInput.pure().displayError, isNull);
+    });
+
+    test('displayError is null when super.pure is used with an initial value',
+        () {
+      expect(DateInput.pure(value: '04/12/1999').displayError, isNull);
+    });
+
+    test('displayError is not null when super.dirty is used', () {
+      expect(DateInput.dirty().displayError, isNotNull);
+    });
+
+    test('DateValidationError is empty', () {
+      expect(DateInput.dirty().displayError, DateValidationError.empty);
+    });
+
+    test('DateValidationError is not valid', () {
+      expect(
+        DateInput.dirty(value: 'luis').displayError,
+        DateValidationError.invalid,
+      );
+    });
+
+    test('DateValidationError is not valid when incompletes format', () {
+      expect(
+        DateInput.dirty(value: '12/12/').displayError,
+        DateValidationError.invalid,
+      );
+    });
+
+    test('DateInput.toDateTime match with DateTime', () {
+      final birthDate = DateTime(1999, 3, 9);
+      expect(
+        DateInput.dirty(
+          value: '${birthDate.day}/${birthDate.month}/${birthDate.year}',
+        ).toDateTime,
+        birthDate,
+      );
+    });
+
+    test('DateValidationError is null when .toPure', () {
+      expect(
+        DateInput.dirty(value: 'luis').toPure.displayError,
+        isNull,
+      );
+    });
+
+    test('UrlValidationError is null', () {
+      expect(
+        DateInput.dirty(value: '09/03/1999').displayError,
+        isNull,
+      );
+    });
+  });
 }
