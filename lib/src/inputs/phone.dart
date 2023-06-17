@@ -1,33 +1,38 @@
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
-import 'package:intl_phone_field/countries.dart';
 
 ///{@template countryX}
-/// [Country] enherit class with [Equatable]
+/// [CountryModel] enherit class with [Equatable]
 /// provides validation logic.
 /// {@endtemplate}
-class CountryX extends Country implements Equatable {
+class CountryModel implements Equatable {
   /// {@macro countryX}
-  const CountryX({
-    required super.name,
-    required super.flag,
-    required super.code,
-    required super.dialCode,
-    required super.minLength,
-    required super.maxLength,
+  const CountryModel({
+    required this.name,
+    required this.flag,
+    required this.code,
+    required this.dialCode,
+    required this.minLength,
+    required this.maxLength,
   });
 
-  /// Create [CountryX] from [Country]
-  factory CountryX.fromCountry(Country country) {
-    return CountryX(
-      name: country.name,
-      flag: country.flag,
-      code: country.code,
-      dialCode: country.dialCode,
-      minLength: country.minLength,
-      maxLength: country.maxLength,
-    );
-  }
+  /// Country name
+  final String name;
+
+  /// Country flag emoji
+  final String flag;
+
+  /// Country two letters code
+  final String code;
+
+  /// Country phone code
+  final String dialCode;
+
+  /// Country min length for phone number
+  final int minLength;
+
+  /// Country max length for phone number
+  final int maxLength;
 
   @override
   List<Object?> get props => [name, flag, code, dialCode, minLength, maxLength];
@@ -47,8 +52,8 @@ enum PhoneValidationError {
   /// Phone not have a country selected
   noCountrySelected,
 
-  /// Phone number character lenght is less than [Country.minLength] or
-  /// more than [Country.maxLength]
+  /// Phone number character lenght is less than [CountryModel.minLength] or
+  /// more than [CountryModel.maxLength]
   invalidLength,
 }
 
@@ -57,20 +62,20 @@ enum PhoneValidationError {
 class PhoneInput extends FormzInput<String, PhoneValidationError> {
   /// Pure representation of [PhoneInput]
   const PhoneInput.pure({
-    String number = '',
+    String value = '',
     this.country,
   }) : super.pure(
-          number,
+          value,
         );
 
   /// Dirty [PhoneInput]
   const PhoneInput.dirty({
-    String number = '',
-    required this.country,
-  }) : super.dirty(number);
+    String value = '',
+    this.country,
+  }) : super.dirty(value);
 
   /// Country
-  final CountryX? country;
+  final CountryModel? country;
 
   /// Display [PhoneValidationError] error if [isPure]
   @override
@@ -94,10 +99,6 @@ class PhoneInput extends FormzInput<String, PhoneValidationError> {
       return PhoneValidationError.noCountrySelected;
     }
 
-    // if (!RegExp(_phonePattern).hasMatch(value)) {
-    //   return PhoneValidationError.invalid;
-    // }
-
     if (value.length < country!.minLength ||
         value.length > country!.maxLength) {
       return PhoneValidationError.invalidLength;
@@ -107,8 +108,5 @@ class PhoneInput extends FormzInput<String, PhoneValidationError> {
   }
 
   /// Convert [PhoneInput] to pure
-  PhoneInput get toPure => PhoneInput.pure(number: value);
-
-  // static const String _phonePattern =
-  //     r'\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}';
+  PhoneInput get toPure => PhoneInput.pure(value: value);
 }
