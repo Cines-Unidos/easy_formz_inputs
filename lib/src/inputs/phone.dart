@@ -38,7 +38,7 @@ class CountryModel implements Equatable {
   List<Object?> get props => [name, flag, code, dialCode, minLength, maxLength];
 
   @override
-  bool? get stringify => false;
+  bool? get stringify => true;
 }
 
 /// [PhoneInput] errors

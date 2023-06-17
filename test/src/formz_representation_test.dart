@@ -511,5 +511,36 @@ void main() {
         isNull,
       );
     });
+
+    test('PhoneInput.fullPhone match', () {
+      expect(
+        PhoneInput.dirty(
+          value: '4149137341',
+          country: countryExample,
+        ).fullPhone,
+        '+${countryExample.dialCode}4149137341',
+      );
+    });
+
+    test('CountryModel props', () {
+      expect(
+        countryExample.props,
+        [
+          countryExample.name,
+          countryExample.flag,
+          countryExample.code,
+          countryExample.dialCode,
+          countryExample.minLength,
+          countryExample.maxLength
+        ],
+      );
+    });
+
+    test('CountryModel stringify', () {
+      expect(
+        countryExample.stringify,
+        true,
+      );
+    });
   });
 }
