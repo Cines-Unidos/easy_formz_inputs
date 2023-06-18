@@ -5,7 +5,7 @@ issue_tracker: https://github.com/Avila-Tek/easy_formz_inputs/issues
 homepage: https://github.com/Avila-Tek/easy_formz_inputs
 documentation: https://github.com/Avila-Tek/easy_formz_inputs
 
-version: 0.1.1
+version: 0.1.0+1
 
 environment:
   sdk: ">=2.18.0 <4.0.0"
