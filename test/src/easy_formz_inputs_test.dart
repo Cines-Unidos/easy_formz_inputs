@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:easy_inputs/easy_inputs.dart';
+import 'package:easy_formz_inputs/easy_formz_inputs.dart';
 import 'package:test/test.dart';
 
 void main() {

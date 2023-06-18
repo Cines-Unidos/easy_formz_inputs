@@ -1,25 +1,25 @@
-# easy_inputs
+# easy_formz_inputs
 
-The easy_inputs library provides pre-built, validated input fields for use in Dart and Flutter applications. Inputs currently provided include email, password, confirm password, URL, date, phone, and non-empty fields.
+The easy_formz_inputs library provides pre-built, validated input fields for use in Dart and Flutter applications. Inputs currently provided include email, password, confirm password, URL, date, phone, and non-empty fields.
 
 ## Installation
 
-To use the easy_inputs library, add the corresponding dependency to your `pubspec.yaml` file:
+To use the easy_formz_inputs library, add the corresponding dependency to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  easy_inputs: ^0.1.0
+  easy_formz_inputs: ^0.1.0
 ```
 
 Then, import the library in your code:
 
 ```dart
-import 'package:easy_inputs/easy_inputs.dart';
+import 'package:easy_formz_inputs/easy_formz_inputs.dart';
 ```
 
 ## Usage
 
-The easy_inputs library provides pre-built and validated input fields. Each input field is defined as a form field, which can be used to validate and manage user input data.
+The easy_formz_inputs library provides pre-built and validated input fields. Each input field is defined as a form field, which can be used to validate and manage user input data.
 
 ### EmailInput
 
