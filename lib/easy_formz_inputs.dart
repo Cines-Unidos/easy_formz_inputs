@@ -1,4 +1,4 @@
 /// Formz Representation
-library easy_inputs;
+library easy_formz_inputs;
 
 export 'src/inputs/inputs.dart';
