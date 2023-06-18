@@ -1,3 +1,6 @@
-# 0.1.0+1
+# 0.1.1
 
-- feat: initial commit 🎉
+- build: intl 0.18.0
+- docs: example
+- docs: pubspec description
+
