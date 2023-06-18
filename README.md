@@ -8,7 +8,7 @@ To use the easy_formz_inputs library, add the corresponding dependency to your `
 
 ```yaml
 dependencies:
-  easy_formz_inputs: ^0.1.0
+  easy_formz_inputs: ^0.1.1
 ```
 
 Then, import the library in your code:
