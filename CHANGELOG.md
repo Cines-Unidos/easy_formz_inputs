@@ -1,6 +1,7 @@
-# 0.1.1
+# 0.2.0
 
-- build: intl 0.18.0
+- build: intl 0.20.2
+- build: formz 0.8.0
 - docs: example
 - docs: pubspec description
 

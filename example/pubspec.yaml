@@ -37,7 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   easy_formz_inputs:
     path: ../
-  formz: ^0.6.0
+  formz: ^0.8.0
   intl_phone_field: ^3.1.0
 
 dev_dependencies:
